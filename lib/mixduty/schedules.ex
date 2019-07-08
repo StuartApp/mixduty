@@ -23,4 +23,13 @@ defmodule Mixduty.Schedules do
   def list(client, params \\ [], options \\ []) do
     get("#{@path}", client, params, options)
   end
+
+  @doc """
+  Get a schedule
+  #### Example
+      Mixduty.Schedules.list(client)
+  """
+  def schedule(id, client, params \\ [], options \\ []) do
+    get("#{@path}/#{id}", client, params, options)
+  end
 end

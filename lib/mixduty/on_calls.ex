@@ -16,7 +16,7 @@ defmodule Mixduty.OnCalls do
   #### Example
       Mixduty.OnCalls.list(client)
   """
-  def list(client, params \\ [], options \\ []) do
+  def list(client, params \\ %{}, options \\ []) do
     get("#{@path}", client, params, options)
   end
 end

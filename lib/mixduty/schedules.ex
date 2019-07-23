@@ -20,7 +20,7 @@ defmodule Mixduty.Schedules do
   #### Example
       Mixduty.Schedules.list(client)
   """
-  def list(client, params \\ [], options \\ []) do
+  def list(client, params \\ %{}, options \\ []) do
     get("#{@path}", client, params, options)
   end
 
@@ -29,7 +29,7 @@ defmodule Mixduty.Schedules do
   #### Example
       Mixduty.Schedules.list(client)
   """
-  def schedule(id, client, params \\ [], options \\ []) do
+  def schedule(id, client, params \\ %{}, options \\ []) do
     get("#{@path}/#{id}", client, params, options)
   end
 end

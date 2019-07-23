@@ -19,7 +19,7 @@ defmodule Mixduty.Users do
   #### Example
       Mixduty.Users.list(client)
   """
-  def list(client, params \\ [], options \\ []) do
+  def list(client, params \\ %{}, options \\ []) do
     get("#{@path}", client, params, options)
   end
 
@@ -28,7 +28,7 @@ defmodule Mixduty.Users do
   #### Example
       Mixduty.Users.user("P00PBUG", client)
   """
-  def user(id, client, params \\ [], options \\ []) do
+  def user(id, client, params \\ %{}, options \\ []) do
     get("#{@path}/#{id}", client, params, options)
   end
 
@@ -42,6 +42,7 @@ defmodule Mixduty.Users do
       name: name,
       email: email
     }
+
     post("#{@path}", client, body)
   end
 

@@ -13,7 +13,7 @@ defmodule Mixduty.EscalationPolicies do
   #### Example
       Mixduty.ExtensionPolicies.list(client)
   """
-  def list(client, params \\ [], options \\ []) do
+  def list(client, params \\ %{}, options \\ []) do
     get("#{@path}", client, params, options)
   end
 end

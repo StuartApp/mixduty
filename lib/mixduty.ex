@@ -6,8 +6,8 @@ defmodule Mixduty do
 
   @endpoint "https://api.pagerduty.com/"
 
-  def get(path, client, params \\ [], options \\ []) do
-    url = @endpoint <> path
+  def get(path, client, params \\ %{}, options \\ []) do
+    url = @endpoint <> path <> "?" <> URI.encode_query(params)
     # TODO: Encode params to url
     raw_request(:get, url, client, options)
   end
@@ -28,6 +28,7 @@ defmodule Mixduty do
   end
 
   def raw_request(method, url, client \\ %{}, body \\ "", options \\ [])
+
   def raw_request(method, url, %Client{headers: headers}, body, options) do
     request!(method, url, body, headers, options)
     |> handle_response
@@ -37,7 +38,8 @@ defmodule Mixduty do
     {:error, "Client is incorrectly configured, initialize client with correct auth token"}
   end
 
-  def handle_response(%HTTPoison.Response{status_code: code, body: resp_body}) when code in 200..299 do
+  def handle_response(%HTTPoison.Response{status_code: code, body: resp_body})
+      when code in 200..299 do
     case resp_body do
       "" -> {:ok, resp_body} |> parse_json(code)
       _ -> JSON.Parser.parse(resp_body) |> parse_json(code)

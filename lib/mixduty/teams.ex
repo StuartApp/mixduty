@@ -16,7 +16,7 @@ defmodule Mixduty.Teams do
   #### Example
       Mixduty.Team.list(client)
   """
-  def list(client, params \\ [], options \\ []) do
+  def list(client, params \\ %{}, options \\ []) do
     get("#{@path}", client, params, options)
   end
 end
